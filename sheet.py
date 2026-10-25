@@ -24,7 +24,13 @@ def connect(config):
 
     json_text = env("GOOGLE_SERVICE_ACCOUNT_JSON")       # GitHub: whole JSON in a secret
     if json_text:
-        client = gspread.service_account_from_dict(json.loads(json_text))
+        try:
+            info = json.loads(json_text)
+        except json.JSONDecodeError:
+            raise SystemExit(
+                "GOOGLE_SERVICE_ACCOUNT_JSON secret is not valid. Paste the WHOLE content of "
+                "credentials.json (starting with { and ending with }) into that secret.")
+        client = gspread.service_account_from_dict(info)
     else:                                                # Your PC: path to the JSON file
         path = PROJECT_DIR / env("GOOGLE_SERVICE_ACCOUNT_FILE", "credentials.json")
         if not path.exists():
