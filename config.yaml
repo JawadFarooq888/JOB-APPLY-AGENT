@@ -1,0 +1,187 @@
+# =====================================================================
+#  Job Search Agent - settings
+#  Change values here. No code changes needed.
+# =====================================================================
+
+# ---------- AI (Google Gemini, free tier) ----------
+gemini_model: "gemini-2.5-flash"   # change here if Google renames/retires the model
+apply_threshold: 65                # score >= this  ->  "Apply", else "Skip"
+max_ai_calls_per_run: 20           # stay inside the free daily quota
+ai_delay_seconds: 7                # wait between AI calls (free tier ~10 calls/minute)
+ai_max_retries: 3                  # retries when Gemini says "rate limit" (429) or is busy
+
+# ---------- Fetching ----------
+request_delay_seconds: 1.5         # polite pause between API requests
+request_timeout_seconds: 25
+max_job_age_days: 21               # job boards: ignore jobs older than this
+max_job_age_days_company: 90       # company career pages (they only list open jobs)
+
+# ---------- Which sources to use (true / false) ----------
+sources:
+  greenhouse: true
+  lever: true
+  ashby: true
+  remotive: true
+  remoteok: true
+  arbeitnow: true
+  jobicy: true
+  adzuna: true          # only runs if ADZUNA_APP_ID and ADZUNA_APP_KEY are set
+
+# Search words sent to the job APIs that support search
+search_terms:
+  - "sql developer"
+  - "database developer"
+  - "etl developer"
+  - "data engineer"
+  - "bi developer"
+  - "data warehouse"
+
+# Adzuna has no Pakistan site, so it mostly finds jobs in other countries.
+# Most get filtered out by the location rules. Kept small on purpose.
+adzuna_countries: ["gb"]
+
+# ---------- Title filter ----------
+# A job title must contain at least ONE of these (case-insensitive).
+title_keywords:
+  - "database developer"
+  - "database engineer"
+  - "sql developer"
+  - "sql server"
+  - "t-sql"
+  - "tsql"
+  - "sql engineer"
+  - "etl"
+  - "data engineer"
+  - "data engineering"
+  - "bi developer"
+  - "bi engineer"
+  - "business intelligence developer"
+  - "business intelligence engineer"
+  - "data warehouse"
+  - "data warehousing"
+  - "dwh"
+  - "database"
+
+# Skip a job if its title contains any of these whole words.
+exclude_title_words:
+  - "senior"
+  - "sr"
+  - "lead"
+  - "principal"
+  - "architect"
+  - "manager"
+  - "management"
+  - "head"
+  - "director"
+  - "staff"
+  - "vp"
+  - "chief"
+  - "intern"
+  - "internship"
+  - "trainee"
+  - "iii"
+  - "iv"
+
+# Skip if the description asks for MORE than this many years of experience.
+# 3 means "3+ years" is kept, "4+ years" is skipped.
+max_years_required: 3
+
+# Skip if the description contains any of these phrases (case-insensitive).
+exclude_description_phrases:
+  - "security clearance"
+  - "secret clearance"
+  - "top secret"
+  - "ts/sci"
+  - "us citizen"
+  - "u.s. citizen"
+  - "must be a citizen"
+  - "green card"
+  - "authorized to work in the united states"
+  - "authorized to work in the us"
+  - "authorization to work in the united states"
+  - "eligible to work in the uk"
+  - "right to work in the uk"
+  - "eu work permit"
+  - "eligible to work in the eu"
+  - "unpaid"
+  - "internship"
+
+# ---------- Location rules ----------
+# Onsite / hybrid jobs are only kept in these cities.
+allowed_cities: ["islamabad", "rawalpindi", "lahore", "karachi"]
+
+# Remote jobs are kept if the location says one of these...
+remote_ok_words:
+  - "pakistan"
+  - "worldwide"
+  - "anywhere"
+  - "global"
+  - "globally"
+  - "international"
+  - "all countries"
+  - "asia"
+  - "apac"
+  - "south asia"
+  - "emea"          # EMEA roles often accept Pakistan; the AI double-checks
+
+# ...and skipped if it mentions any of these places (and none of the words above).
+# A remote job whose location says only "Remote" (no country) is kept.
+blocked_places:
+  - "us"
+  - "usa"
+  - "u.s."
+  - "united states"
+  - "america"
+  - "north america"
+  - "canada"
+  - "latam"
+  - "latin america"
+  - "south america"
+  - "brazil"
+  - "mexico"
+  - "argentina"
+  - "colombia"
+  - "uk"
+  - "united kingdom"
+  - "england"
+  - "ireland"
+  - "europe"
+  - "eu"
+  - "european"
+  - "germany"
+  - "france"
+  - "spain"
+  - "portugal"
+  - "netherlands"
+  - "poland"
+  - "romania"
+  - "italy"
+  - "sweden"
+  - "switzerland"
+  - "australia"
+  - "new zealand"
+  - "india"
+  - "philippines"
+  - "japan"
+  - "singapore"
+  - "israel"
+  - "africa"
+  - "nigeria"
+  - "kenya"
+  - "south africa"
+  - "egypt"
+  - "uae"
+  - "dubai"
+  - "saudi"
+  - "turkey"
+  - "est"
+  - "pst"
+  - "cst"
+  - "et"
+  - "pt"
+
+# ---------- Google Sheet ----------
+worksheet_name: "Jobs"
+
+# ---------- Email summary (optional) ----------
+email_top_n: 10

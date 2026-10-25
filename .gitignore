@@ -1,0 +1,14 @@
+# Secrets and personal data - never upload these
+.env
+credentials.json
+*service_account*.json
+*.json.key
+resume.txt
+
+# Python / editor junk
+.venv/
+venv/
+__pycache__/
+*.pyc
+.vscode/
+output/

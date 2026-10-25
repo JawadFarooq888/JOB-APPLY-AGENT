@@ -1,0 +1,6 @@
+# Job Search Agent - Python packages (all free)
+requests>=2.31        # HTTP calls to job APIs
+PyYAML>=6.0           # read config.yaml and companies.yaml
+python-dotenv>=1.0    # read the local .env file
+google-genai>=1.0     # Google Gemini AI (free API key)
+gspread>=6.0          # Google Sheets

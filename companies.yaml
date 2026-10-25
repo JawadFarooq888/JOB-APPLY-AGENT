@@ -1,0 +1,83 @@
+# =====================================================================
+#  Company career pages (public ATS job board APIs)
+#
+#  Add a company: find its careers page link.
+#    boards.greenhouse.io/<slug>  or job-boards.greenhouse.io/<slug>  -> greenhouse
+#    jobs.lever.co/<slug>                                            -> lever
+#    jobs.ashbyhq.com/<slug>                                         -> ashby
+#  Put <slug> in the right list, then run:  python check_companies.py
+#
+#  All slugs below were checked on 2026-10-25.
+# =====================================================================
+
+greenhouse:
+  # Pakistan-based or big Pakistan teams
+  - gomotive          # Motive (large Islamabad/Lahore office)
+  - careem            # Careem (Karachi tech hub)
+  - turing            # Turing (remote developers worldwide)
+  # Remote-first / hire worldwide
+  - gitlab
+  - canonical
+  - wikimedia
+  - mozilla
+  - automatticcareers
+  - consensys
+  - binance
+  - bitpanda
+  - grafanalabs
+  - elastic
+  - mattermost
+  - jetbrains
+  - typeform
+  - ghost
+  - netlify
+  - vercel
+  # Data & database companies (often hire data/DB engineers)
+  - databricks
+  - fivetran
+  - cockroachlabs
+  - mongodb
+  - singlestore
+  - yugabyte
+  - starburst
+  - dremio
+  - dataiku
+  - collibra
+  - cribl
+  - planetscale
+  - sumologic
+  - newrelic
+  - datadog
+  - mixpanel
+  - pagerduty
+  - okta
+  - cloudflare
+  - coinbase
+  - reddit
+
+lever:
+  - educative         # Educative (large Lahore team)
+
+ashby:
+  - tajir             # Tajir (Pakistan)
+  - andela            # Andela (remote talent network)
+  - clickhouse
+  - supabase
+  - posthog
+  - airbyte
+  - percona
+  - astronomer
+  - prefect
+  - montecarlodata
+  - neon
+  - redis
+  - sentry
+  - docker
+  - zapier
+  - helpscout
+  - ledger
+  - paxos
+  - amplitude
+  - fullstory
+  - close
+  - gitbook
