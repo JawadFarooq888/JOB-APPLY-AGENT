@@ -27,9 +27,12 @@ def connect(config):
         try:
             info = json.loads(json_text)
         except json.JSONDecodeError:
+            # Show only the length and first character, never the secret itself
             raise SystemExit(
-                "GOOGLE_SERVICE_ACCOUNT_JSON secret is not valid. Paste the WHOLE content of "
-                "credentials.json (starting with { and ending with }) into that secret.")
+                f"GOOGLE_SERVICE_ACCOUNT_JSON secret is not valid (it has {len(json_text)} "
+                f"characters and starts with '{json_text[:1]}'; it should have about 2300 "
+                "characters and start with '{'). Paste the WHOLE content of the key file "
+                "into that secret.")
         client = gspread.service_account_from_dict(info)
     else:                                                # Your PC: path to the JSON file
         path = PROJECT_DIR / env("GOOGLE_SERVICE_ACCOUNT_FILE", "credentials.json")
